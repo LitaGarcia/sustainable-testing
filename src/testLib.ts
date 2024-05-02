@@ -8,3 +8,14 @@ export function expect(expected) {
         }
     }
 }
+
+export function test(description:string, callback:()=>void){
+    try{
+        callback();
+        console.log(`✅ ${description}`);
+    }
+    catch (error){
+        console.log(`❌ ${description}`);
+        console.log(error);
+    }
+}
