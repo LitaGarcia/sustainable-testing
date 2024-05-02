@@ -19,3 +19,10 @@ export async function test(description:string, callback:()=>void){
         console.log(error);
     }
 }
+
+export const it = test;
+
+export async function describe(description: string, callback:()=>void){
+    console.log(description);
+    callback();
+}

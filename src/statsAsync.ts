@@ -1,9 +1,9 @@
 import * as stats from "./stats";
 
-export function sum(numbers: number[]){
+export function sumAsync(numbers: number[]){
     return Promise.resolve(stats.sum(numbers));
 }
 
-export function average(numbers: number[]){
+export function averageAsync(numbers: number[]){
     return Promise.resolve(stats.average(numbers));
 }
