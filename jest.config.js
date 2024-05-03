@@ -4,4 +4,6 @@ module.exports = {
   preset: 'ts-jest',
   //could be jsdom for example
   testEnvironment: 'node',
+  //verbose mode
+  verbose: true
 };
