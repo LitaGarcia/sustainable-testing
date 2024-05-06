@@ -1,37 +1,41 @@
 export function camelCaseConverter(text: string): string {
-    const upperCaseValidator: RegExp = /^[A-Z][a-zA-Z]*$/
-    const spaceValidator: RegExp = /\s/;
-    const hyphenValidator: RegExp = /-/;
-    const underscoreValidator: RegExp = /_/;
-    const camelCaseValidator: RegExp = /^[a-z]/;
-    const camelCaseAndSpaceValidator: RegExp = /[\w\s]+[_\-][\w\s]+/;
+    const regex = /(?:^|\s+)(\w+)(?:[_-]+)(\w+)/g
 
-    if (text.match(camelCaseAndSpaceValidator)) {
-        const textList = text.split(' ').map((word, i) => word.split(/[_-]/));
-        const replacedTextList = textList.map((word, i) => {
+    if (text.match(regex)) {
+        const textList: string[][] = text.split(' ').map((word: string) => word.split(/[_-]/));
+        const replacedTextList = textList.map((word: string[]) => {
             word.join('')
-            return word.map((w, j) => {
+            return word.map((w: string) => {
                 return w.charAt(0).toUpperCase() + w.slice(1)
             }).join('').toString()
         })
         return replacedTextList.join('')
-    }
-
-    if (text === '') {
+    } else if (emptyStringValidator(text) || stringUpperCaseValidator(text)) {
         return text
-    }
-    if (text.match(upperCaseValidator)) {
-        return text
-    }
-    if (text.match(spaceValidator)) {
+    } else if (stringSpaceValidator(text)) {
         return text.split(' ').join('')
-    }
-    if (text.match(hyphenValidator) && text.match(underscoreValidator)) {
-        return text.split('-').join('').split('_').join('')
-    }
-    if (text.match(camelCaseValidator)) {
+    } else if (stringCamelCaseValidator(text)) {
         return text.charAt(0).toUpperCase() + text.slice(1)
     }
 
-    return 'test'
 }
+
+function emptyStringValidator(text: string): boolean {
+    return text === ''
+}
+
+function stringUpperCaseValidator(text: string): boolean {
+    const upperCaseRegex: RegExp = /^[A-Z][a-zA-Z]*$/
+    return upperCaseRegex.test(text)
+}
+
+function stringSpaceValidator(text: string): boolean {
+    const spaceRegex: RegExp = /\s/
+    return spaceRegex.test(text)
+}
+
+function stringCamelCaseValidator(text: string) {
+    const camelCaseRegex: RegExp = /^[a-z]/
+    return camelCaseRegex.test(text)
+}
+
