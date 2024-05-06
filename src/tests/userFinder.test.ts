@@ -1,4 +1,4 @@
-import {User, UserFinder, UserRepository} from "../user-finder/userFinder";
+import {User, UserFinder, UserRepository} from "../user/userFinder";
 
 class stubUserRepository implements UserRepository {
     findUsersByName(name: string): User[] {
