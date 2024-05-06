@@ -48,5 +48,38 @@ describe('', () => {
                 {foo: 'foo', bar: 'foo'},
             ]).toContainEqual({foo: 'foo', bar: 'foo'});
         })
+        it('Exceptions', () => {
+            const throwError = () => {
+                throw new Error('Something wrong...');
+            };
+            expect(throwError).toThrow();
+            expect(throwError).toThrow(Error);
+            expect(throwError).toThrow('wrong');
+            expect(throwError).toThrow(/wrong/);
+        });
+
     }
 )
+
+test('custom assertions (grouping)', () => {
+    const list = [{value: 10}, {value: 20}, {value: 30}];
+
+    expectThatList(list).isExactly({value: 10}, {value: 20}, {value: 30});
+});
+
+function expectThatList<T>(list: T[]) {
+    return listMatchers(list);
+}
+
+//this custom assertion allows us to compare more complicated objects
+function listMatchers<T>(list: T[]) {
+    return {
+        isExactly(...items: T[]) {
+            expect(items.length).toBe(list.length);
+            //when it is not necessary use a param but is required we use an underscore
+            items.forEach((_, i) => {
+                expect(items[i]).toEqual(list[i]);
+            });
+        },
+    };
+}
