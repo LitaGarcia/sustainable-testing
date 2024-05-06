@@ -1,6 +1,6 @@
-import {averageAsync, sumAsync} from "../statsAsync";
+import {averageAsync, sumAsync} from "../manual-testing-library/statsAsync";
 
-describe("Stats Async should", ()=> {
+describe("Stats Async should", () => {
     it("calculates the sum of all elements of the array (async)", async () => {
         const result = await sumAsync([1, 2, 3]);
         const expected = 6;
