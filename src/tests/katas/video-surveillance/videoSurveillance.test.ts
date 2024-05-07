@@ -27,7 +27,7 @@ describe('The video recorder', () => {
 
             //then
             expect(mockedDetectingMotion).toHaveBeenCalled()
-            expect(videoRecorder.recorder).toBe(false)
+            expect(videoRecorder.isRecording).toBe(false)
         })
     }
 )
