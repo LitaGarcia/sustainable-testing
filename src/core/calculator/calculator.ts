@@ -1,4 +1,4 @@
-import * as arithmetic from './arythmetic'
+import * as arithmetic from './arithmetic'
 
 export function doAdd(a: number, b: number) {
     return arithmetic.add(a, b);

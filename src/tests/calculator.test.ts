@@ -1,4 +1,4 @@
-import * as arithmetic from "../core/calculator/arythmetic";
+import * as arithmetic from "../core/calculator/arithmetic";
 import * as calculator from "../core/calculator/calculator";
 
 describe('The calculator', () => {
@@ -16,5 +16,21 @@ describe('The calculator', () => {
         const result = calculator.doSubtract(1, 2);
         expect(arithmetic.subtract).toHaveBeenCalledWith(1, 2);
         expect(result).toBe(-1)
+    });
+});
+
+// mock jest implementation
+// it is not common to use it
+// jest.mock("../core/calculator/arithmetic");
+
+describe.skip('The calculator', () => {
+    it("calls arithmetic.add", () => {
+        calculator.doAdd(1, 2);
+        expect(arithmetic.add).toHaveBeenCalledWith(1, 2);
+    });
+
+    it("calls arithmetic.subtract", () => {
+        calculator.doSubtract(1, 2);
+        expect(arithmetic.subtract).toHaveBeenCalledWith(1, 2);
     });
 });
