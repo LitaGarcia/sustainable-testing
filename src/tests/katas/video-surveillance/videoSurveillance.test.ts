@@ -1,7 +1,7 @@
 // Indica al grabador que detenga la grabación cuando el sensor no detecta movimiento. ✅
 //     Indica al grabador que comience la grabación cuando el sensor detecta movimiento. ✅
 //     Indica al grabador que detenga la grabación cuando el sensor arroja un error inesperado.✅
-//     Comprueba el estado del sensor de movimiento una vez por segundo.
+//     Comprueba el estado del sensor de movimiento una vez por segundo.✅
 
 import {MotionSensor} from "../../../katas/video-surveillance/interfaces";
 import {Recorder, SurveillanceController} from "../../../katas/video-surveillance/video";
@@ -52,5 +52,13 @@ describe('The video recorder', () => {
 
             expect(spyRecorder).toHaveBeenCalled();
         })
+        it('should check the sensor status once per second', () => {
+            const sensorSpy = jest.spyOn(motionSensor, 'isDetectingMotion');
+            const timesToCheck: number = 5;
+
+            controller.recordMotion(timesToCheck);
+
+            expect(sensorSpy).toHaveBeenCalledTimes(timesToCheck);
+        });
     }
 )
