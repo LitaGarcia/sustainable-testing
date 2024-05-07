@@ -4,7 +4,8 @@
 //     Comprueba el estado del sensor de movimiento una vez por segundo.✅
 
 import {MotionSensor} from "../../../katas/video-surveillance/interfaces";
-import {Recorder, SurveillanceController} from "../../../katas/video-surveillance/video";
+import {Recorder} from "../../../katas/video-surveillance/videoRecord";
+import {SurveillanceController} from "../../../katas/video-surveillance/surveillanceController";
 
 class MotionSensorMock implements MotionSensor {
     detectedMotion: boolean;
@@ -54,11 +55,11 @@ describe('The video recorder', () => {
         })
         it('should check the sensor status once per second', () => {
             const sensorSpy = jest.spyOn(motionSensor, 'isDetectingMotion');
-            const timesToCheck: number = 5;
+            const numberOfSeconds: number = 5;
 
-            controller.recordMotion(timesToCheck);
+            controller.recordMotion(numberOfSeconds);
 
-            expect(sensorSpy).toHaveBeenCalledTimes(timesToCheck);
+            expect(sensorSpy).toHaveBeenCalledTimes(numberOfSeconds);
         });
     }
 )
