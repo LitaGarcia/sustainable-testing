@@ -1,4 +1,4 @@
-import {Case, Diagnosis, DiseaseFilter} from "../core/veterinarian-case/diseaseFilter";
+import {Case, Diagnosis, DiseaseFilter} from "../../core/veterinarian-case/diseaseFilter";
 
 describe('Disease filter', () => {
     it('filters cases when several diagnosis filters are applied together', () => {

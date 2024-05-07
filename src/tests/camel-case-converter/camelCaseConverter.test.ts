@@ -1,4 +1,4 @@
-import {camelCaseConverter} from "../core/camel-case-converter/camelCaseConverter";
+import {camelCaseConverter} from "../../core/camel-case-converter/camelCaseConverter";
 
 describe('camel case converter', () => {
     it('should return an empty string if exists one', () => {

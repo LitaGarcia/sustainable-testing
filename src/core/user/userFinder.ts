@@ -1,6 +1,14 @@
 export class User {
     constructor(readonly name: string, readonly surname: string) {
     }
+
+    static createPremium() {
+
+    }
+
+    static createFreemium() {
+        return undefined;
+    }
 }
 
 export interface UserRepository {
