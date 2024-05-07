@@ -7,23 +7,27 @@ import {MotionSensor} from "../../../katas/video-surveillance/interfaces";
 import {VideoRecorder} from "../../../katas/video-surveillance/video";
 
 class MotionSensorMock implements MotionSensor {
+    detectedMotion: boolean;
+
     isDetectingMotion(): boolean {
-        return true;
+        return this.detectedMotion;
     }
 }
 
 describe('The video recorder', () => {
         it('should stop the record when the sensor does not detect movement', () => {
             //given
-            const sensor = new MotionSensorMock();
-            const spy = jest.spyOn(sensor, 'isDetectingMotion');
-            const videoRecorder = new VideoRecorder(sensor);
+            const motionSensor = new MotionSensorMock();
+            const mockedDetectingMotion = jest.spyOn(motionSensor, 'isDetectingMotion');
+            const videoRecorder = new VideoRecorder(motionSensor);
 
             //when
-            videoRecorder.startRecording();
+            mockedDetectingMotion.mockImplementation(() => false)
+            const startRecording = videoRecorder.startRecording();
 
             //then
-            expect(spy).toHaveBeenCalled()
+            expect(mockedDetectingMotion).toHaveBeenCalled()
+            expect(videoRecorder.recorder).toBe(false)
         })
     }
 )
