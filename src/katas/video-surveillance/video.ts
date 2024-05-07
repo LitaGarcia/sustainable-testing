@@ -9,8 +9,9 @@ export class Recorder implements VideoRecorder {
     startRecording(): void {
         if (!this.motionSensor.isDetectingMotion()) {
             this.isRecording = false;
+        } else {
+            this.isRecording = true;
         }
-
     }
 
     stopRecording(): void {
