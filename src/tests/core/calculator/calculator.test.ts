@@ -1,5 +1,5 @@
-import * as arithmetic from "../../core/calculator/arithmetic";
-import * as calculator from "../../core/calculator/calculator";
+import * as arithmetic from "../../../core/calculator/arithmetic";
+import * as calculator from "../../../core/calculator/calculator";
 
 describe.skip('The calculator', () => {
     // this is a spy + stub

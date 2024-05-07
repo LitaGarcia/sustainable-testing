@@ -1,4 +1,4 @@
-import {average, sum} from "../../core/manual-testing-library/stats";
+import {average, sum} from "../../../core/manual-testing-library/stats";
 
 describe("Stats should", () => {
     it("calculates the sum of all elements of the array", () => {
