@@ -3,18 +3,26 @@ import {MotionSensor, VideoRecorder} from "./interfaces";
 export class Recorder implements VideoRecorder {
     isRecording: boolean;
 
-    constructor(private readonly motionSensor: MotionSensor) {
-    }
-
     startRecording(): void {
-        if (!this.motionSensor.isDetectingMotion()) {
-            this.isRecording = false;
-        } else {
-            this.isRecording = true;
-        }
+        this.isRecording = true;
     }
 
     stopRecording(): void {
-        console.log('Recording stopped');
+        this.isRecording = false;
+    }
+}
+
+export class SurveillanceController {
+    constructor(private sensor: MotionSensor, private recorder: VideoRecorder) {
+    }
+
+    recordMotion() {
+        try {
+            this.sensor.isDetectingMotion()
+                ? this.recorder.startRecording()
+                : this.recorder.stopRecording();
+        } catch (e) {
+            this.recorder.stopRecording();
+        }
     }
 }
