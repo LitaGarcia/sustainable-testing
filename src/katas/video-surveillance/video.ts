@@ -1,6 +1,6 @@
-import {MotionSensor} from "./interfaces";
+import {MotionSensor, VideoRecorder} from "./interfaces";
 
-export class VideoRecorder implements VideoRecorder {
+export class Recorder implements VideoRecorder {
     isRecording: boolean;
 
     constructor(private readonly motionSensor: MotionSensor) {

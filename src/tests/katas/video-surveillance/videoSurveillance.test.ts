@@ -4,7 +4,7 @@
 //     Comprueba el estado del sensor de movimiento una vez por segundo.
 
 import {MotionSensor} from "../../../katas/video-surveillance/interfaces";
-import {VideoRecorder} from "../../../katas/video-surveillance/video";
+import {Recorder} from "../../../katas/video-surveillance/video";
 
 class MotionSensorMock implements MotionSensor {
     detectedMotion: boolean;
@@ -19,7 +19,7 @@ describe('The video recorder', () => {
             //given
             const motionSensor = new MotionSensorMock();
             const mockedDetectingMotion = jest.spyOn(motionSensor, 'isDetectingMotion');
-            const videoRecorder = new VideoRecorder(motionSensor);
+            const videoRecorder = new Recorder(motionSensor);
 
             //when
             mockedDetectingMotion.mockImplementation(() => false)
