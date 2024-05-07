@@ -1,4 +1,4 @@
-import {fizzbuzz} from "../fizzbuzz/fizzbuzz";
+import {fizzbuzz} from "../core/fizzbuzz/fizzbuzz";
 
 const listNumbers = [
     "0",

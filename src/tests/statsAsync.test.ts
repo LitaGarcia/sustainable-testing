@@ -1,4 +1,4 @@
-import {averageAsync, sumAsync} from "../manual-testing-library/statsAsync";
+import {averageAsync, sumAsync} from "../core/manual-testing-library/statsAsync";
 
 describe("Stats Async should", () => {
     it("calculates the sum of all elements of the array (async)", async () => {

@@ -1,4 +1,4 @@
-import {UserB, UserRepositoryB, UserService} from "../user/userService";
+import {UserB, UserRepositoryB, UserService} from "../core/user/userService";
 
 class RepositorySpy implements UserRepositoryB {
     public savedUser: UserB;

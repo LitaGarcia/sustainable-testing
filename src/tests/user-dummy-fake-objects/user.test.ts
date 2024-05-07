@@ -1,4 +1,4 @@
-import {User, UserRepository, UserService} from "../../user/user-dummy-fake-objects/user";
+import {User, UserRepository, UserService} from "../../core/user/user-dummy-fake-objects/user";
 
 class InMemoryRepository implements UserRepository {
     private users: User[] = [];
