@@ -14,17 +14,17 @@
 // No incrementa el total para valores no numéricos. Ej.: "a" ⇒ 0, "1,a" ⇒ 1, "1,a,2" ⇒ 3, "1a, 2" ⇒ 2
 // Suma todos los números separados por un separador personalizado. Ej.: "//#/3#2" ⇒ 5, "//#/3,2" ⇒ 0, "//%/1%2%3" ⇒ 6
 
-export function add(data: string): number {
+export function add(expression: string): number {
     let total: number = 0;
 
 
-    if (data === null || data === "" || data.length === 1 && isNaN(parseInt(data))) {
+    if (!expression || expression.length === 1 && isNaN(parseInt(expression))) {
         return total;
     }
 
-    if (data.includes('//')) {
-        const personalizedSeparator = data[2];
-        const numbers = data.split('/');
+    if (expression.includes('//')) {
+        const personalizedSeparator = expression[2];
+        const numbers = expression.split('/');
         const operation = numbers.find((n, i) => {
             return n[1]
         })
@@ -39,7 +39,7 @@ export function add(data: string): number {
 
     }
 
-    total = data
+    total = expression
         .split(',')
         .map(stringNumber => parseInt(stringNumber))
         .reduce((previousValue, currentValue) => {
@@ -47,4 +47,41 @@ export function add(data: string): number {
         })
 
     return total
+}
+
+
+//Another approach
+
+const nothingToAdd = 0;
+
+export function sumNumbers(expression: string) {
+    if (!expression) {
+        return nothingToAdd;
+    }
+    const beginningOfConfig = '//';
+    let separator = ',';
+    if (expression.startsWith(beginningOfConfig)) {
+        const endOfConfig = '/';
+        separator = getSeparator(expression, beginningOfConfig, endOfConfig);
+        expression = removeConfigFrom(expression, endOfConfig);
+    }
+    const tokens = expression.split(separator);
+    return tokens.map(getNumber).reduce(sum);
+}
+
+function getSeparator(expression: string, beginningOfConfig: string, endOfConfig: string) {
+    return expression.slice(beginningOfConfig.length, expression.lastIndexOf(endOfConfig));
+}
+
+function removeConfigFrom(expression: string, endOfConfig: string) {
+    return expression.slice(expression.lastIndexOf(endOfConfig) + 1);
+}
+
+function getNumber(token: string) {
+    const parsedToken = Number(token);
+    return isNaN(parsedToken) ? nothingToAdd : parsedToken;
+}
+
+function sum(previousNumber, currentNumber) {
+    return previousNumber + currentNumber;
 }
