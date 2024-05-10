@@ -6,6 +6,5 @@ export function fibonacciSequence(limit: number): number  {
         sequence.push(sequence[i] + sequence[i + 1])
         i++
     }
-
     return sequence[limit - 1]
 }
